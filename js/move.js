@@ -11,6 +11,7 @@ $(function(){
 	var work_years;
 	var class_add;
 	var frame_year;
+	var $layer_sel;
 	var jsonCover_data=portfolioindex_url+'/data/cover_data.json';
 	var jsonHeader_data=portfolioindex_url+'/data/header_data.json';
 	var jsonFrame_data=portfolioindex_url+'/data/frame_data.json';
