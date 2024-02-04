@@ -1269,6 +1269,7 @@ $(function(){
 		}else if ((event.type=='click')||((event.type=='keydown')&&((event.keyCode)||(event.which))===13))
 		{
 			// console.log(this);
+			$layer_sel = $(this);
 			$body.css({'overflow-y':'hidden'});
 			// body_tag.style.overflowY='hidden'; 위와 같은 내용.
 			var datasum;
