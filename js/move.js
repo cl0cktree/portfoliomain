@@ -166,6 +166,7 @@ $(function(){
 					nav_num_start=0;
 					$('#landing-contents-title, #landing-contents-buttonwrap').stop().animate({'text-indent':'0'},500);
 					$('.topmenu1-list-span').children('.list-span-leftborder, .list-span-rightborder').css({'bottom':'0px'});
+					$body.css({'overflow-y':'hidden'});
 					landing_contents();
 				}
 				nav_start();
@@ -385,23 +386,40 @@ $(function(){
 				return false;
 			}
 			return false;
+		}else{
+			if ($('#article1-nav1-topmenu1').css('display')=='none')
+			{
+				$('.body-footer-add').animate({'margin-left':'0px'},100)
+				$('.nav1-side-menu').animate({'right':'-100%'},100)
+				$('.body-all-header').stop().animate({'height':'50px'},100)
+				$('.article1-nav1-toplogo').stop().animate({'height':'0px'},100)
+				$('#menu-icon input[type=checkbox]').prop('checked',false)
+				$('#article1-nav1-topmenu1').find('.nav1-topmenu1-list').children('a').attr('aria-hidden','false');
+				$('#article1-nav1-topmenu1').find('.nav1-topmenu1-list').children('a').children('span').attr('aria-hidden','false');
+				$('footer').find('.menu-list-ul').children('.list-ul-li').children('a').attr('aria-hidden','true');
+				$('footer').find('.menu-list-ul').children('.list-ul-li').children('a').children('span').attr('aria-hidden','true');
+				if($('footer').find('.menu-list-ul').children('.list-ul-li').children('a').focus()){
+					$('#article1-nav1-topmenu1').find('.nav1-topmenu1-list').children('a').focus();
+				};
+				return false;
+			}
 		}
-		if ($('#article1-nav1-topmenu1').css('display')!='none')
-		{
-			$('.body-footer-add').animate({'margin-left':'0px'},100)
-			$('.nav1-side-menu').animate({'right':'-100%'},100)
-			$('.body-all-header').stop().animate({'height':'50px'},100)
-			$('.article1-nav1-toplogo').stop().animate({'height':'0px'},100)
-			$('#menu-icon input[type=checkbox]').prop('checked',false)
-			$('#article1-nav1-topmenu1').find('.nav1-topmenu1-list').children('a').attr('aria-hidden','false');
-			$('#article1-nav1-topmenu1').find('.nav1-topmenu1-list').children('a').children('span').attr('aria-hidden','false');
-			$('footer').find('.menu-list-ul').children('.list-ul-li').children('a').attr('aria-hidden','true');
-			$('footer').find('.menu-list-ul').children('.list-ul-li').children('a').children('span').attr('aria-hidden','true');
-			if($('footer').find('.menu-list-ul').children('.list-ul-li').children('a').focus()){
-				$('#article1-nav1-topmenu1').find('.nav1-topmenu1-list').children('a').focus();
-			};
-			return false;
-		}
+		if ($('#article1-nav1-topmenu1').css('display')!=='none')
+			{
+				$('.body-footer-add').animate({'margin-left':'0px'},100)
+				$('.nav1-side-menu').animate({'right':'-100%'},100)
+				$('.body-all-header').stop().animate({'height':'50px'},100)
+				$('.article1-nav1-toplogo').stop().animate({'height':'0px'},100)
+				$('#menu-icon input[type=checkbox]').prop('checked',false)
+				$('#article1-nav1-topmenu1').find('.nav1-topmenu1-list').children('a').attr('aria-hidden','false');
+				$('#article1-nav1-topmenu1').find('.nav1-topmenu1-list').children('a').children('span').attr('aria-hidden','false');
+				$('footer').find('.menu-list-ul').children('.list-ul-li').children('a').attr('aria-hidden','true');
+				$('footer').find('.menu-list-ul').children('.list-ul-li').children('a').children('span').attr('aria-hidden','true');
+				if($('footer').find('.menu-list-ul').children('.list-ul-li').children('a').focus()){
+					$('#article1-nav1-topmenu1').find('.nav1-topmenu1-list').children('a').focus();
+				};
+				return false;
+			}
 
 	})
 	/*----------------------------------------------------------------*/
@@ -1683,6 +1701,7 @@ $(function(){
 			$('#click-all-filter-landing').css({'z-index':'-10','opacity':'0'})
 			$('.move-wrap1').animate({'opacity':'1'},300)
 			$('#click-all-filter-landing').find('[tabindex]').attr('tabindex','-1');
+			$body.css({'overflow-y':''});
 			$('.body-section-content, header, footer').find('[tabindex]').attr('tabindex','0');
 			stop_clock();
 		}
@@ -1810,8 +1829,10 @@ $(function(){
 						weather_Clouds();
 					}else if((wearther_out=='Overcast')&&((wearther_out!==null)||(wearther_out!==''))){
 						weather_Overcast();
-					}else if((wearther_out=='Hazy')&&((wearther_out!==null)||(wearther_out!==''))){
-						weather_Hazy();
+					}else if((wearther_out=='Mist')&&((wearther_out!==null)||(wearther_out!==''))){
+						weather_Mist();
+					}else if((wearther_out=='Haze')&&((wearther_out!==null)||(wearther_out!==''))){
+						weather_Haze();
 					};
 					console.log('weather is '+wearther_out+' now.');
 				};
@@ -3061,7 +3082,7 @@ function weather_Wind() {
 	var b_canbus = document.querySelector('#click-all-filter-landing');
 	var circleArray = [];
 	var loopCancel;
-	var canvas = document.createElement('canvas');	
+	var canvas = document.createElement('canvas');
 	b_canbus.appendChild(canvas);
 	b_canbus.querySelector('canvas').classList.add('weather_canvas');
 	var weather_canvas = document.querySelector('.weather_canvas');
@@ -3542,34 +3563,41 @@ function weather_Clouds() {
 	/*#__PURE__*/
 	function () {
 		function Circle(info) {
-		_classCallCheck(this, Circle);
-
-		this.index = info.index;
-		this.x = info.x;
-		this.y = info.y;
-		this.speed = info.speed;
-		this.radius = info.radius;
-		this.startAngle = info.startAngle;
-		this.endAngle = info.endAngle;
-		this.clockwise = info.clockwise;
-		this.draw();
+			_classCallCheck(this, Circle);
+			this.index = info.index;
+			this.x = info.x;
+			this.y = info.y;
+			this.width = info.width;
+			this.height = info.height;
+			this.speed = info.speed;
+			this.radius = info.radius;
+			this.startAngle = info.startAngle;
+			this.endAngle = info.endAngle;
+			this.clockwise = info.clockwise;
+			this.draw();
 		}
 
 		_createClass(Circle, [{
 		key: "draw",
 		value: function draw() {
-			context.beginPath();
-			context.arc(this.x, this.y, this.radius, this.startAngle, this.endAngle, toRadian(360), this.clockwise);
-			context.fillStyle = 'rgba(255, 255, 255, 0)';
-			context.fill();
-			context.strokeStyle = 'rgba(0, 0, 0, 0.15)';
-			context.lineWidth = '2';
-			context.stroke();
-			context.closePath();
-			context.fillStyle = '#fff';
-			//context.font = '30px bold sans-serif';
-			context.textAlign = "center";
-			//context.fillText(this.index, this.x, this.y+10);
+			var weather_img_src = portfolioindex_url+'/images/weather/weather_Clouds.png';
+			var weather_img = new Image();
+        	weather_img.src = weather_img_src;
+
+			// context.beginPath();
+			// context.arc(this.x, this.y, this.radius, this.startAngle, this.endAngle, toRadian(360), this.clockwise);
+			// context.fillStyle = 'rgba(255, 255, 255, 0)';
+			// context.fill();
+			// context.strokeStyle = 'rgba(0, 0, 0, 0.08)';
+			// context.lineWidth = '2';
+			// context.stroke();
+			// context.closePath();
+			// context.fillStyle = '#fff';
+			// context.font = '30px bold sans-serif';
+			// context.textAlign = "center";
+			// context.fillText(this.index, this.x, this.y+10);
+
+			context.drawImage(weather_img, this.x, this.y*0.5, this.width, this.height);
 			}
 		}]);
 
@@ -3577,7 +3605,7 @@ function weather_Clouds() {
 }();
 
 	function setLayout() {
-		canvas.width = window.innerWidth;
+		canvas.width = window.innerWidth*1.2;
 		canvas.height = window.innerHeight*1.2;
 	}
 
@@ -3587,13 +3615,16 @@ function weather_Clouds() {
 		var y;
 		var speed;
 		var circle;
+		var random_math;
 
-		for (var i = 0; i < 5; i++) {
-		x = Math.random() * window.innerWidth * 0.8 + Math.random() * window.innerWidth * 0.2;
+		for (var i = 0; i < 16; i++) {
+		x = Math.random() * window.innerWidth * 1.2;
 		y = Math.random() * window.innerHeight * 0.9; //높이 random생성.
 		//y = window.innerHeight+100; //처음부터 맨 아래에서 생성하고 싶은 경우 사용.
 
-		speed = Math.random() * 3 + 2;
+		speed = Math.random() * 0.8 + 1;
+		random_math = Math.floor(Math.random() * 400) + 300;
+
 		circle = new Circle({
 			index: i,
 			x: x,
@@ -3602,7 +3633,9 @@ function weather_Clouds() {
 			radius: Math.floor(Math.random() * 30) + 20,
 			startAngle: 360,
 			endAngle: 350,
-			clockwise: false
+			clockwise: false,
+			width: random_math,
+            height: random_math
 		});
 		circleArray.push(circle);
 		}
@@ -3616,21 +3649,22 @@ function weather_Clouds() {
 
 		for (var i = 0; i < circleArray.length; i++) {
 		circle = circleArray[i];
-		circle.y -= circle.speed; // 움직임을 아래에서 위로 주고 싶을 때 사용.
+		circle.x += circle.speed; // 움직임을 좌에서 우로 주고 싶을 때 사용.
+		// circle.y -= circle.speed; // 움직임을 아래에서 위로 주고 싶을 때 사용.
 		// circle.y += circle.speed; // 움직임을 위에서 아래로 주고 싶을 때 사용.
 
 		// 움직임을 아래에서 위로 주고 싶을 때 사용.
-		if (circle.y < -circle.radius) {
-			circle.y = canvas.height;
-			circle.x = Math.random() * window.innerWidth * 0.8 + Math.random() * window.innerWidth * 0.2;
-			circle.radius = Math.floor(Math.random() * 30) + 20;
-		}
-		//  움직임을 위에서 아래로 주고 싶을 때 사용.
-		// if (circle.y > canvas.height) {
-		// 	circle.y = 0;
+		// if (circle.y < -circle.radius) {
+		// 	circle.y = canvas.height;
 		// 	circle.x = Math.random() * window.innerWidth * 0.8 + Math.random() * window.innerWidth * 0.2;
 		// 	circle.radius = Math.floor(Math.random() * 30) + 20;
 		// }
+		//  움직임을 위에서 아래로 주고 싶을 때 사용.
+		if (circle.x > canvas.width) {
+			circle.y = Math.random() * window.innerWidth * 0.3 + Math.random() * window.innerWidth * 0.2;
+			circle.x = 0;
+			circle.radius = Math.floor(Math.random() * 30) + 20;
+		}
 
 		circle.draw();
 		}
@@ -3661,34 +3695,41 @@ function weather_Overcast() {
 	/*#__PURE__*/
 	function () {
 		function Circle(info) {
-		_classCallCheck(this, Circle);
-
-		this.index = info.index;
-		this.x = info.x;
-		this.y = info.y;
-		this.speed = info.speed;
-		this.radius = info.radius;
-		this.startAngle = info.startAngle;
-		this.endAngle = info.endAngle;
-		this.clockwise = info.clockwise;
-		this.draw();
+			_classCallCheck(this, Circle);
+			this.index = info.index;
+			this.x = info.x;
+			this.y = info.y;
+			this.width = info.width;
+			this.height = info.height;
+			this.speed = info.speed;
+			this.radius = info.radius;
+			this.startAngle = info.startAngle;
+			this.endAngle = info.endAngle;
+			this.clockwise = info.clockwise;
+			this.draw();
 		}
 
 		_createClass(Circle, [{
 		key: "draw",
 		value: function draw() {
-			context.beginPath();
-			context.arc(this.x, this.y, this.radius, this.startAngle, this.endAngle, toRadian(360), this.clockwise);
-			context.fillStyle = 'rgba(255, 255, 255, 0)';
-			context.fill();
-			context.strokeStyle = 'rgba(0, 0, 0, 0.15)';
-			context.lineWidth = '2';
-			context.stroke();
-			context.closePath();
-			context.fillStyle = '#fff';
-			//context.font = '30px bold sans-serif';
-			context.textAlign = "center";
-			//context.fillText(this.index, this.x, this.y+10);
+			var weather_img_src = portfolioindex_url+'/images/weather/weather_Clouds.png';
+			var weather_img = new Image();
+        	weather_img.src = weather_img_src;
+
+			// context.beginPath();
+			// context.arc(this.x, this.y, this.radius, this.startAngle, this.endAngle, toRadian(360), this.clockwise);
+			// context.fillStyle = 'rgba(255, 255, 255, 0)';
+			// context.fill();
+			// context.strokeStyle = 'rgba(0, 0, 0, 0.08)';
+			// context.lineWidth = '2';
+			// context.stroke();
+			// context.closePath();
+			// context.fillStyle = '#fff';
+			// context.font = '30px bold sans-serif';
+			// context.textAlign = "center";
+			// context.fillText(this.index, this.x, this.y+10);
+
+			context.drawImage(weather_img, this.x, this.y, this.width, this.height);
 			}
 		}]);
 
@@ -3696,7 +3737,7 @@ function weather_Overcast() {
 }();
 
 	function setLayout() {
-		canvas.width = window.innerWidth;
+		canvas.width = window.innerWidth*1.2;
 		canvas.height = window.innerHeight*1.2;
 	}
 
@@ -3706,13 +3747,16 @@ function weather_Overcast() {
 		var y;
 		var speed;
 		var circle;
+		var random_math;
 
-		for (var i = 0; i < 5; i++) {
-		x = Math.random() * window.innerWidth * 0.8 + Math.random() * window.innerWidth * 0.2;
+		for (var i = 0; i < 32; i++) {
+		x = Math.random() * window.innerWidth * 1.2;
 		y = Math.random() * window.innerHeight * 0.9; //높이 random생성.
 		//y = window.innerHeight+100; //처음부터 맨 아래에서 생성하고 싶은 경우 사용.
 
-		speed = Math.random() * 3 + 2;
+		speed = Math.random() * 0.8 + 1;
+		random_math = Math.floor(Math.random() * 500) + 400;
+
 		circle = new Circle({
 			index: i,
 			x: x,
@@ -3721,7 +3765,9 @@ function weather_Overcast() {
 			radius: Math.floor(Math.random() * 30) + 20,
 			startAngle: 360,
 			endAngle: 350,
-			clockwise: false
+			clockwise: false,
+			width: random_math,
+            height: random_math
 		});
 		circleArray.push(circle);
 		}
@@ -3735,21 +3781,22 @@ function weather_Overcast() {
 
 		for (var i = 0; i < circleArray.length; i++) {
 		circle = circleArray[i];
-		circle.y -= circle.speed; // 움직임을 아래에서 위로 주고 싶을 때 사용.
+		circle.x += circle.speed; // 움직임을 좌에서 우로 주고 싶을 때 사용.
+		// circle.y -= circle.speed; // 움직임을 아래에서 위로 주고 싶을 때 사용.
 		// circle.y += circle.speed; // 움직임을 위에서 아래로 주고 싶을 때 사용.
 
 		// 움직임을 아래에서 위로 주고 싶을 때 사용.
-		if (circle.y < -circle.radius) {
-			circle.y = canvas.height;
-			circle.x = Math.random() * window.innerWidth * 0.8 + Math.random() * window.innerWidth * 0.2;
-			circle.radius = Math.floor(Math.random() * 30) + 20;
-		}
-		//  움직임을 위에서 아래로 주고 싶을 때 사용.
-		// if (circle.y > canvas.height) {
-		// 	circle.y = 0;
+		// if (circle.y < -circle.radius) {
+		// 	circle.y = canvas.height;
 		// 	circle.x = Math.random() * window.innerWidth * 0.8 + Math.random() * window.innerWidth * 0.2;
 		// 	circle.radius = Math.floor(Math.random() * 30) + 20;
 		// }
+		//  움직임을 위에서 아래로 주고 싶을 때 사용.
+		if (circle.x > canvas.width) {
+			circle.y = Math.random() * window.innerWidth;
+			circle.x = 0;
+			circle.radius = Math.floor(Math.random() * 30) + 20;
+		}
 
 		circle.draw();
 		}
@@ -3761,7 +3808,7 @@ function weather_Overcast() {
 	window.addEventListener('resize', setLayout);
 };
 
-function weather_Hazy() {
+function weather_Mist() {
 	var b_canbus = document.querySelector('#click-all-filter-landing');
 	var circleArray = [];
 	var loopCancel;
@@ -3780,34 +3827,173 @@ function weather_Hazy() {
 	/*#__PURE__*/
 	function () {
 		function Circle(info) {
-		_classCallCheck(this, Circle);
-
-		this.index = info.index;
-		this.x = info.x;
-		this.y = info.y;
-		this.speed = info.speed;
-		this.radius = info.radius;
-		this.startAngle = info.startAngle;
-		this.endAngle = info.endAngle;
-		this.clockwise = info.clockwise;
-		this.draw();
+			_classCallCheck(this, Circle);
+			this.index = info.index;
+			this.x = info.x;
+			this.y = info.y;
+			this.width = info.width;
+			this.height = info.height;
+			this.speed = info.speed;
+			this.radius = info.radius;
+			this.startAngle = info.startAngle;
+			this.endAngle = info.endAngle;
+			this.clockwise = info.clockwise;
+			this.draw();
 		}
 
 		_createClass(Circle, [{
 		key: "draw",
 		value: function draw() {
-			context.beginPath();
-			context.arc(this.x, this.y, this.radius, this.startAngle, this.endAngle, toRadian(360), this.clockwise);
-			context.fillStyle = 'rgba(255, 255, 255, 0)';
-			context.fill();
-			context.strokeStyle = 'rgba(0, 0, 0, 0.15)';
-			context.lineWidth = '2';
-			context.stroke();
-			context.closePath();
-			context.fillStyle = '#fff';
-			//context.font = '30px bold sans-serif';
-			context.textAlign = "center";
-			//context.fillText(this.index, this.x, this.y+10);
+			var weather_img_src = portfolioindex_url+'/images/weather/weather_Hazy.png';
+			var weather_img = new Image();
+        	weather_img.src = weather_img_src;
+
+			// context.beginPath();
+			// context.arc(this.x, this.y, this.radius, this.startAngle, this.endAngle, toRadian(360), this.clockwise);
+			// context.fillStyle = 'rgba(255, 255, 255, 0)';
+			// context.fill();
+			// context.strokeStyle = 'rgba(0, 0, 0, 0.08)';
+			// context.lineWidth = '2';
+			// context.stroke();
+			// context.closePath();
+			// context.fillStyle = '#fff';
+			// context.font = '30px bold sans-serif';
+			// context.textAlign = "center";
+			// context.fillText(this.index, this.x, this.y+10);
+
+			context.drawImage(weather_img, this.x, this.y, this.width, this.height);
+			}
+		}]);
+
+	return Circle;
+}();
+
+	function setLayout() {
+		canvas.width = window.innerWidth*1.2;
+		canvas.height = window.innerHeight*1.2;
+	}
+
+	function init() {
+		setLayout();
+		var x;
+		var y;
+		var speed;
+		var circle;
+		var random_math;
+
+		for (var i = 0; i < 8; i++) {
+		x = Math.random() * window.innerWidth * 0.8 + Math.random() * window.innerWidth * 0.2;
+		y = Math.random() * window.innerHeight * 0.9; //높이 random생성.
+		//y = window.innerHeight+100; //처음부터 맨 아래에서 생성하고 싶은 경우 사용.
+
+		speed = Math.random() * 0.5 + 1;
+		random_math = Math.floor(Math.random() * 800) + 700;
+
+		circle = new Circle({
+			index: i,
+			x: x,
+			y: y,
+			speed: speed,
+			radius: Math.floor(Math.random() * 30) + 20,
+			startAngle: 360,
+			endAngle: 350,
+			clockwise: false,
+			width: random_math,
+            height: random_math
+		});
+		circleArray.push(circle);
+		}
+
+		render();
+	}
+
+	function render() {
+		context.clearRect(0, 0, canvas.width, canvas.height);
+		var circle;
+
+		for (var i = 0; i < circleArray.length; i++) {
+		circle = circleArray[i];
+		// circle.x += circle.speed; // 움직임을 좌에서 우로 주고 싶을 때 사용.
+		circle.y -= circle.speed; // 움직임을 아래에서 위로 주고 싶을 때 사용.
+		// circle.y += circle.speed; // 움직임을 위에서 아래로 주고 싶을 때 사용.
+
+		// 움직임을 아래에서 위로 주고 싶을 때 사용.
+		// if (circle.y < -circle.radius) {
+		// 	circle.y = canvas.height;
+		// 	circle.x = Math.random() * window.innerWidth * 0.8 + Math.random() * window.innerWidth * 0.2;
+		// 	circle.radius = Math.floor(Math.random() * 30) + 20;
+		// }
+		//  움직임을 위에서 아래로 주고 싶을 때 사용.
+		if (circle.y < -circle.radius) {
+			circle.y = canvas.height;
+			circle.x = Math.random() * window.innerWidth * 1.2;
+			circle.radius = Math.floor(Math.random() * 30) + 20;
+		}
+
+		circle.draw();
+		}
+
+		loopCancel = requestAnimationFrame(render);
+	}
+
+	init();
+	window.addEventListener('resize', setLayout);
+};
+
+function weather_Haze() {
+	var b_canbus = document.querySelector('#click-all-filter-landing');
+	var circleArray = [];
+	var loopCancel;
+	var canvas = document.createElement('canvas');	
+	b_canbus.appendChild(canvas);
+	b_canbus.querySelector('canvas').classList.add('weather_canvas');
+	var weather_canvas = document.querySelector('.weather_canvas');
+	var context = weather_canvas.getContext('2d');
+	weather_canvas.style.zIndex = '-1';
+
+	function toRadian(d) {
+		return d * Math.PI / 180;
+	}
+
+	var Circle =
+	/*#__PURE__*/
+	function () {
+		function Circle(info) {
+			_classCallCheck(this, Circle);
+			this.index = info.index;
+			this.x = info.x;
+			this.y = info.y;
+			this.width = info.width;
+			this.height = info.height;
+			this.speed = info.speed;
+			this.radius = info.radius;
+			this.startAngle = info.startAngle;
+			this.endAngle = info.endAngle;
+			this.clockwise = info.clockwise;
+			this.draw();
+		}
+
+		_createClass(Circle, [{
+		key: "draw",
+		value: function draw() {
+			var weather_img_src = portfolioindex_url+'/images/weather/weather_Hazy.png';
+			var weather_img = new Image();
+        	weather_img.src = weather_img_src;
+
+			// context.beginPath();
+			// context.arc(this.x, this.y, this.radius, this.startAngle, this.endAngle, toRadian(360), this.clockwise);
+			// context.fillStyle = 'rgba(255, 255, 255, 0)';
+			// context.fill();
+			// context.strokeStyle = 'rgba(0, 0, 0, 0.08)';
+			// context.lineWidth = '2';
+			// context.stroke();
+			// context.closePath();
+			// context.fillStyle = '#fff';
+			// context.font = '30px bold sans-serif';
+			// context.textAlign = "center";
+			// context.fillText(this.index, this.x, this.y+10);
+
+			context.drawImage(weather_img, this.x, this.y, this.width, this.height);
 			}
 		}]);
 
@@ -3825,13 +4011,16 @@ function weather_Hazy() {
 		var y;
 		var speed;
 		var circle;
+		var random_math;
 
-		for (var i = 0; i < 5; i++) {
-		x = Math.random() * window.innerWidth * 0.8 + Math.random() * window.innerWidth * 0.2;
+		for (var i = 0; i < 16; i++) {
+		x = Math.random() * window.innerWidth * 1.2; //넓이 random생성.
 		y = Math.random() * window.innerHeight * 0.9; //높이 random생성.
 		//y = window.innerHeight+100; //처음부터 맨 아래에서 생성하고 싶은 경우 사용.
 
-		speed = Math.random() * 3 + 2;
+		speed = Math.random() * 0.8 + 1;
+		random_math = Math.floor(Math.random() * 800) + 700;
+
 		circle = new Circle({
 			index: i,
 			x: x,
@@ -3840,7 +4029,9 @@ function weather_Hazy() {
 			radius: Math.floor(Math.random() * 30) + 20,
 			startAngle: 360,
 			endAngle: 350,
-			clockwise: false
+			clockwise: false,
+			width: random_math,
+            height: random_math
 		});
 		circleArray.push(circle);
 		}
@@ -3854,21 +4045,22 @@ function weather_Hazy() {
 
 		for (var i = 0; i < circleArray.length; i++) {
 		circle = circleArray[i];
+		// circle.x += circle.speed; // 움직임을 좌에서 우로 주고 싶을 때 사용.
 		circle.y -= circle.speed; // 움직임을 아래에서 위로 주고 싶을 때 사용.
 		// circle.y += circle.speed; // 움직임을 위에서 아래로 주고 싶을 때 사용.
 
 		// 움직임을 아래에서 위로 주고 싶을 때 사용.
-		if (circle.y < -circle.radius) {
-			circle.y = canvas.height;
-			circle.x = Math.random() * window.innerWidth * 0.8 + Math.random() * window.innerWidth * 0.2;
-			circle.radius = Math.floor(Math.random() * 30) + 20;
-		}
-		//  움직임을 위에서 아래로 주고 싶을 때 사용.
-		// if (circle.y > canvas.height) {
-		// 	circle.y = 0;
+		// if (circle.y < -circle.radius) {
+		// 	circle.y = canvas.height;
 		// 	circle.x = Math.random() * window.innerWidth * 0.8 + Math.random() * window.innerWidth * 0.2;
 		// 	circle.radius = Math.floor(Math.random() * 30) + 20;
 		// }
+		//  움직임을 위에서 아래로 주고 싶을 때 사용.
+		if (circle.y < -circle.radius) {
+			circle.y = canvas.height;
+			circle.x = Math.random() * window.innerWidth*1.2;
+			circle.radius = Math.floor(Math.random() * 30) + 20;
+		}
 
 		circle.draw();
 		}
