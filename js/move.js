@@ -10,6 +10,7 @@ $(function(){
 	var body_tag = document.body;
 	var $body = $('body');
 	var scroll_framespeed = 1000/60;
+	var cal_year = 2025;
 	var nav_num;
 	var nav_num_start;
 	var contents_head;
@@ -685,7 +686,7 @@ $(function(){
 		work_years=0;
 		var print_year=2015;
 		var start_year;
-		var this_year=2025;
+		var this_year=cal_year;
 		$('.article-summon-wrap').html('');
 		$('.index-btn-wrap').html('');
 		for (start_year=2016;start_year<=this_year;start_year++){
@@ -696,9 +697,15 @@ $(function(){
 				$('#article-main-scroll'+work_years).find('h3').append(print_year);
 				$('#article-main-scroll'+work_years).append('<div id="main-scroll'+work_years+'-con" class="main-scrollall-con"></div>');
 			}
+			// if($('.article-main-scrollall').find('#main-scroll'+work_years+'-con')){
+				// $('#main-scroll'+work_years+'-con').append('<div class="move-wrap'+work_years+'"></div>');
+			// }
+
 			if($('.article-main-scrollall').find('#main-scroll'+work_years+'-con')){
-				$('#main-scroll'+work_years+'-con').append('<div class="move-wrap'+work_years+'"></div>');
+				$('#main-scroll'+work_years+'-con').append('<div class="move-wrap'+work_years+'"><div class="scrollall-con-box box-all-empty" id="scroll'+work_years+'-con-box0" aria-haspopup="true" role="button" tabindex="0" data-empty="true"><div id="con-box'+work_years+'-imgborder0" class="con-box-imgborder">\
+					<img src="https://cl0cktree.github.io/jsonframe/images/project/mistery3.gif" alt="내용없음"></div><div id="con-box'+work_years+'-caption0" class="con-box-caption"><span>내용없음</span></div></div></div>');
 			}
+
 			$('.index-btn-wrap').append('<div class="index-btn-all" id="index-btn-num'+work_years+'" data-btn="'+work_years+'">'+work_years+'</div>');
 		}
 	};
@@ -715,15 +722,15 @@ $(function(){
 					
 					$('.move-wrap'+work_years).find('.box-all-empty').attr('data-empty','true').remove();
 				};
-				function empty_box(){
-					$('.move-wrap'+work_years).append('<div class="scrollall-con-box box-all-empty" id="scroll'+work_years+'-con-box0" aria-haspopup="true" role="button" tabindex="0" data-empty="true"><div id="con-box'+work_years+'-imgborder0" class="con-box-imgborder">\
-					<img src="https://cl0cktree.github.io/jsonframe/images/project/mistery3.gif" alt="내용없음"></div><div id="con-box'+work_years+'-caption0" class="con-box-caption"><span>내용없음</span></div></div>');
-				};
+				// function empty_box(){
+					// $('.move-wrap'+work_years).append('<div class="scrollall-con-box box-all-empty" id="scroll'+work_years+'-con-box0" aria-haspopup="true" role="button" tabindex="0" data-empty="true"><div id="con-box'+work_years+'-imgborder0" class="con-box-imgborder">\
+					// <img src="https://cl0cktree.github.io/jsonframe/images/project/mistery3.gif" alt="내용없음"></div><div id="con-box'+work_years+'-caption0" class="con-box-caption"><span>내용없음</span></div></div>');
+				// };
 
 				if (item.data_section=='portfolio'){
 					work_years=0;
 					var start_year;
-					var this_year=2025;
+					var this_year=cal_year;
 
 					for (start_year=2016;start_year<=this_year;start_year++){
 						work_years++;
@@ -765,16 +772,16 @@ $(function(){
 					// }
 				};
 
-				if($('.main-scrollall-con').find('.scrollall-con-box').length<=0){
-					work_years=0;
-					var start_year;
-					var this_year=2025;
-
-					for (start_year=2016;start_year<=this_year;start_year++){
-						work_years++;
-						empty_box();
-					};
-				};
+				// if($('.main-scrollall-con').find('.scrollall-con-box').length<=0){
+					// work_years=0;
+					// var start_year;
+					// var this_year=cal_year;
+				// 
+					// for (start_year=2016;start_year<=this_year;start_year++){
+						// work_years++;
+						// empty_box();
+					// };
+				// };
 
 			});
 		});
@@ -804,15 +811,15 @@ $(function(){
 					<img src="'+item.data_img+'" alt="'+item.data_alt+'"></div><div id="con-box'+work_years+'-caption'+item.years_num+'" class="con-box-caption"><span>'+item.data_title+'</span></div></div>');
 					$('.move-wrap'+work_years).find('.box-all-empty').attr('data-empty','true').remove();
 				};
-				function empty_box(){
-					$('.move-wrap'+work_years).append('<div class="scrollall-con-box box-all-empty" id="scroll'+work_years+'-con-box0" aria-haspopup="true" role="button" tabindex="0" data-empty="true"><div id="con-box'+work_years+'-imgborder0" class="con-box-imgborder">\
-					<img src="https://cl0cktree.github.io/jsonframe/images/project/mistery3.gif" alt="내용없음"></div><div id="con-box'+work_years+'-caption0" class="con-box-caption"><span>내용없음</span></div></div>');
-				};
+				// function empty_box(){
+					// $('.move-wrap'+work_years).append('<div class="scrollall-con-box box-all-empty" id="scroll'+work_years+'-con-box0" aria-haspopup="true" role="button" tabindex="0" data-empty="true"><div id="con-box'+work_years+'-imgborder0" class="con-box-imgborder">\
+					// <img src="https://cl0cktree.github.io/jsonframe/images/project/mistery3.gif" alt="내용없음"></div><div id="con-box'+work_years+'-caption0" class="con-box-caption"><span>내용없음</span></div></div>');
+				// };
 
 				if(item.data_kinds=='web'){
 					work_years=0;
 					var start_year;
-					var this_year=2025;
+					var this_year=cal_year;
 
 					for (start_year=2016;start_year<=this_year;start_year++){
 						work_years++;
@@ -852,16 +859,16 @@ $(function(){
 						// contents_box();
 					// }
 				};
-				if($('.main-scrollall-con').find('.scrollall-con-box').length<=0){
-					work_years=0;
-					var start_year;
-					var this_year=2025;
-
-					for (start_year=2016;start_year<=this_year;start_year++){
-						work_years++;
-						empty_box();
-					};
-				};
+				// if($('.main-scrollall-con').find('.scrollall-con-box').length<=0){
+					// work_years=0;
+					// var start_year;
+					// var this_year=cal_year;
+				// 
+					// for (start_year=2016;start_year<=this_year;start_year++){
+						// work_years++;
+						// empty_box();
+					// };
+				// };
 			});
 		});
 		$('.section-heading').html(contents_head);
@@ -881,15 +888,15 @@ $(function(){
 					
 					$('.move-wrap'+work_years).find('.box-all-empty').attr('data-empty','true').remove();
 				};
-				function empty_box(){
-					$('.move-wrap'+work_years).append('<div class="scrollall-con-box box-all-empty" id="scroll'+work_years+'-con-box0" aria-haspopup="true" role="button" tabindex="0" data-empty="true"><div id="con-box'+work_years+'-imgborder0" class="con-box-imgborder">\
-					<img src="https://cl0cktree.github.io/jsonframe/images/project/mistery3.gif" alt="내용없음"></div><div id="con-box'+work_years+'-caption0" class="con-box-caption"><span>내용없음</span></div></div>');
-				};
+				// function empty_box(){
+					// $('.move-wrap'+work_years).append('<div class="scrollall-con-box box-all-empty" id="scroll'+work_years+'-con-box0" aria-haspopup="true" role="button" tabindex="0" data-empty="true"><div id="con-box'+work_years+'-imgborder0" class="con-box-imgborder">\
+					// <img src="https://cl0cktree.github.io/jsonframe/images/project/mistery3.gif" alt="내용없음"></div><div id="con-box'+work_years+'-caption0" class="con-box-caption"><span>내용없음</span></div></div>');
+				// };
 
 				if(item.data_kinds=='movie'){
 					work_years=0;
 					var start_year;
-					var this_year=2025;
+					var this_year=cal_year;
 
 					for (start_year=2016;start_year<=this_year;start_year++){
 						work_years++;
@@ -929,16 +936,16 @@ $(function(){
 						// contents_box();
 					// }
 				};
-				if($('.main-scrollall-con').find('.scrollall-con-box').length<=0){
-					work_years=0;
-					var start_year;
-					var this_year=2025;
-
-					for (start_year=2016;start_year<=this_year;start_year++){
-						work_years++;
-						empty_box();
-					};
-				};
+				// if($('.main-scrollall-con').find('.scrollall-con-box').length<=0){
+					// work_years=0;
+					// var start_year;
+					// var this_year=cal_year;
+				// 
+					// for (start_year=2016;start_year<=this_year;start_year++){
+						// work_years++;
+						// empty_box();
+					// };
+				// };
 			});
 		});
 		$('.section-heading').html(contents_head);
@@ -958,15 +965,15 @@ $(function(){
 					
 					$('.move-wrap'+work_years).find('.box-all-empty').attr('data-empty','true').remove();
 				};
-				function empty_box(){
-					$('.move-wrap'+work_years).append('<div class="scrollall-con-box box-all-empty" id="scroll'+work_years+'-con-box0" aria-haspopup="true" role="button" tabindex="0" data-empty="true"><div id="con-box'+work_years+'-imgborder0" class="con-box-imgborder">\
-					<img src="https://cl0cktree.github.io/jsonframe/images/project/mistery3.gif" alt="내용없음"></div><div id="con-box'+work_years+'-caption0" class="con-box-caption"><span>내용없음</span></div></div>');
-				};
+				// function empty_box(){
+					// $('.move-wrap'+work_years).append('<div class="scrollall-con-box box-all-empty" id="scroll'+work_years+'-con-box0" aria-haspopup="true" role="button" tabindex="0" data-empty="true"><div id="con-box'+work_years+'-imgborder0" class="con-box-imgborder">\
+					// <img src="https://cl0cktree.github.io/jsonframe/images/project/mistery3.gif" alt="내용없음"></div><div id="con-box'+work_years+'-caption0" class="con-box-caption"><span>내용없음</span></div></div>');
+				// };
 
 				if(item.data_kinds=='flash'){
 					work_years=0;
 					var start_year;
-					var this_year=2025;
+					var this_year=cal_year;
 
 					for (start_year=2016;start_year<=this_year;start_year++){
 						work_years++;
@@ -1006,16 +1013,16 @@ $(function(){
 						// contents_box();
 					// }
 				};
-				if($('.main-scrollall-con').find('.scrollall-con-box').length<=0){
-					work_years=0;
-					var start_year;
-					var this_year=2025;
-
-					for (start_year=2016;start_year<=this_year;start_year++){
-						work_years++;
-						empty_box();
-					};
-				};
+				// if($('.main-scrollall-con').find('.scrollall-con-box').length<=0){
+					// work_years=0;
+					// var start_year;
+					// var this_year=cal_year;
+				// 
+					// for (start_year=2016;start_year<=this_year;start_year++){
+						// work_years++;
+						// empty_box();
+					// };
+				// };
 			});
 		});
 		$('.section-heading').html(contents_head);
@@ -1035,15 +1042,15 @@ $(function(){
 					
 					$('.move-wrap'+work_years).find('.box-all-empty').attr('data-empty','true').remove();
 				};
-				function empty_box(){
-					$('.move-wrap'+work_years).append('<div class="scrollall-con-box box-all-empty" id="scroll'+work_years+'-con-box0" aria-haspopup="true" role="button" tabindex="0" data-empty="true"><div id="con-box'+work_years+'-imgborder0" class="con-box-imgborder">\
-					<img src="https://cl0cktree.github.io/jsonframe/images/project/mistery3.gif" alt="내용없음"></div><div id="con-box'+work_years+'-caption0" class="con-box-caption"><span>내용없음</span></div></div>');
-				};
+				// function empty_box(){
+					// $('.move-wrap'+work_years).append('<div class="scrollall-con-box box-all-empty" id="scroll'+work_years+'-con-box0" aria-haspopup="true" role="button" tabindex="0" data-empty="true"><div id="con-box'+work_years+'-imgborder0" class="con-box-imgborder">\
+					// <img src="https://cl0cktree.github.io/jsonframe/images/project/mistery3.gif" alt="내용없음"></div><div id="con-box'+work_years+'-caption0" class="con-box-caption"><span>내용없음</span></div></div>');
+				// };
 
 				if(item.data_kinds=='image'){
 					work_years=0;
 					var start_year;
-					var this_year=2025;
+					var this_year=cal_year;
 
 					for (start_year=2016;start_year<=this_year;start_year++){
 						work_years++;
@@ -1083,16 +1090,16 @@ $(function(){
 						// contents_box();
 					// }
 				};
-				if($('.main-scrollall-con').find('.scrollall-con-box').length<=0){
-					work_years=0;
-					var start_year;
-					var this_year=2025;
-
-					for (start_year=2016;start_year<=this_year;start_year++){
-						work_years++;
-						empty_box();
-					};
-				};
+				// if($('.main-scrollall-con').find('.scrollall-con-box').length<=0){
+					// work_years=0;
+					// var start_year;
+					// var this_year=cal_year;
+				// 
+					// for (start_year=2016;start_year<=this_year;start_year++){
+						// work_years++;
+						// empty_box();
+					// };
+				// };
 			});
 		});
 		$('.section-heading').html(contents_head);
@@ -1962,28 +1969,31 @@ $(function(){
 				var weather_this = json.weather[0].main;
 				if((location_lat!==''||location_lat!==null)&&(place!==''||place!==null)){
 					$('.filter-landing-contents').append('<div class="cover-city"><span class="weather_place">'+place+'</span> : <span class="weather_tempt">'+tempt+'℃</span> / <span class="weather_now">'+weather_this+'</span></div>');
-					weather_now = document.querySelector('.weather_now');
-					wearther_out = weather_now.innerHTML;
-					if((wearther_out=='Clear')&&((wearther_out!==null)||(wearther_out!==''))){
-						weather_Clear();
-					}else if((wearther_out=='Fine')&&((wearther_out!==null)||(wearther_out!==''))){
-						weather_Fine();
-					}else if((wearther_out=='Wind')&&((wearther_out!==null)||(wearther_out!==''))){
-						weather_Wind();
-					}else if((wearther_out=='Rain')&&((wearther_out!==null)||(wearther_out!==''))){
-						weather_Rain();
-					}else if((wearther_out=='Snow')&&((wearther_out!==null)||(wearther_out!==''))){
-						weather_Snow();
-					}else if((wearther_out=='Clouds')&&((wearther_out!==null)||(wearther_out!==''))){
-						weather_Clouds();
-					}else if((wearther_out=='Overcast')&&((wearther_out!==null)||(wearther_out!==''))){
-						weather_Overcast();
-					}else if((wearther_out=='Mist')&&((wearther_out!==null)||(wearther_out!==''))){
-						weather_Mist();
-					}else if((wearther_out=='Haze')&&((wearther_out!==null)||(wearther_out!==''))){
-						weather_Haze();
-					};
-					console.log('weather is '+wearther_out+' now.');
+					if(document.querySelector('.weather_now')){
+						weather_now = document.querySelector('.weather_now');
+						wearther_out = weather_now.innerHTML;
+						if((wearther_out=='Clear')&&((wearther_out!==null)||(wearther_out!==''))){
+							weather_Clear();
+						}else if((wearther_out=='Fine')&&((wearther_out!==null)||(wearther_out!==''))){
+							weather_Fine();
+						}else if((wearther_out=='Wind')&&((wearther_out!==null)||(wearther_out!==''))){
+							weather_Wind();
+						}else if((wearther_out=='Rain')&&((wearther_out!==null)||(wearther_out!==''))){
+							weather_Rain();
+						}else if((wearther_out=='Snow')&&((wearther_out!==null)||(wearther_out!==''))){
+							weather_Snow();
+						}else if((wearther_out=='Clouds')&&((wearther_out!==null)||(wearther_out!==''))){
+							weather_Clouds();
+						}else if((wearther_out=='Overcast')&&((wearther_out!==null)||(wearther_out!==''))){
+							weather_Overcast();
+						}else if((wearther_out=='Mist')&&((wearther_out!==null)||(wearther_out!==''))){
+							weather_Mist();
+						}else if((wearther_out=='Haze')&&((wearther_out!==null)||(wearther_out!==''))){
+							weather_Haze();
+						};
+						console.log('weather is '+wearther_out+' now.');
+					}
+					
 				};
 		    });
 		};
@@ -3993,7 +4003,7 @@ function weather_Mist() {
 		_createClass(Circle, [{
 		key: "draw",
 		value: function draw() {
-			var weather_img_src = portfolioindex_url+'/images/weather/weather_Hazy.png';
+			var weather_img_src = portfolioindex_url+'/images/weather/weather_Mist.png';
 			var weather_img = new Image();
         	weather_img.src = weather_img_src;
 
@@ -4030,13 +4040,13 @@ function weather_Mist() {
 		var circle;
 		var random_math;
 
-		for (var i = 0; i < 8; i++) {
-		x = Math.random() * window.innerWidth * 0.8 + Math.random() * window.innerWidth * 0.2;
+		for (var i = 0; i < 2; i++) {
+		x = 0;
 		y = Math.random() * window.innerHeight * 0.9; //높이 random생성.
 		//y = window.innerHeight+100; //처음부터 맨 아래에서 생성하고 싶은 경우 사용.
 
-		speed = Math.random() * 0.5 + 1;
-		random_math = Math.floor(Math.random() * 800) + 700;
+		speed = Math.random() * 0.7 + 0.7;
+		random_math = Math.floor(Math.random() * 1920) + 1920;
 
 		circle = new Circle({
 			index: i,
@@ -4047,8 +4057,8 @@ function weather_Mist() {
 			startAngle: 360,
 			endAngle: 350,
 			clockwise: false,
-			width: random_math,
-            height: random_math
+			width: window.innerWidth*1.2,
+            height: window.innerHeight*1.2
 		});
 		circleArray.push(circle);
 		}
@@ -4074,8 +4084,8 @@ function weather_Mist() {
 		// }
 		//  움직임을 위에서 아래로 주고 싶을 때 사용.
 		if (circle.y < -circle.radius) {
-			circle.y = canvas.height;
-			circle.x = Math.random() * window.innerWidth * 1.2;
+			circle.y = canvas.height*0.6;
+			circle.x = 0;
 			circle.radius = Math.floor(Math.random() * 30) + 20;
 		}
 
