@@ -58,6 +58,12 @@ $(function(){
 		}else if((this_url=='www.clocktree.n-e.kr/')||(this_url=='www.clocktree.n-e.kr/index.html')||(this_url=='www.clocktree.n-e.kr/sub/sub1.html')||(this_url=='www.clocktree.n-e.kr/sub/sub2.html')||(this_url=='www.clocktree.n-e.kr/sub/sub3.html')||(this_url=='www.clocktree.n-e.kr/sub/sub4.html')||(this_url=='www.clocktree.n-e.kr/sub/sub5.html')){
 			portfolioindex_url = 'https://www.clocktree.n-e.kr'
 			console.log('type_10 = '+portfolioindex_url);
+		}else if((this_url=='cl0cktree.github.io/clocktree.co.kr/')||(this_url=='cl0cktree.github.io/clocktree.co.kr/index.html')||(this_url=='cl0cktree.github.io/clocktree.co.kr/sub/sub1.html')||(this_url=='cl0cktree.github.io/clocktree.co.kr/sub/sub2.html')||(this_url=='cl0cktree.github.io/clocktree.co.kr/sub/sub3.html')||(this_url=='cl0cktree.github.io/clocktree.co.kr/sub/sub4.html')||(this_url=='cl0cktree.github.io/clocktree.co.kr/sub/sub5.html')){
+			portfolioindex_url = 'https://cl0cktree.github.io/clocktree.co.kr'
+			console.log('type_11 = '+portfolioindex_url);
+		}else if((this_url=='http://www.clocktree.co.kr/')||(this_url=='http://www.clocktree.co.kr/index.html')||(this_url=='http://www.clocktree.co.kr/sub/sub1.html')||(this_url=='http://www.clocktree.co.kr/sub/sub2.html')||(this_url=='http://www.clocktree.co.kr/sub/sub3.html')||(this_url=='http://www.clocktree.co.kr/sub/sub4.html')||(this_url=='http://www.clocktree.co.kr/sub/sub5.html')){
+			portfolioindex_url = 'http://www.clocktree.co.kr'
+			console.log('type_12 = '+portfolioindex_url);
 		};
 		jsonCover_data=portfolioindex_url+'/data/cover_data.json';
 		jsonHeader_data=portfolioindex_url+'/data/header_data.json';
@@ -733,7 +739,7 @@ $(function(){
 				frame_year=item.data_years;
 				function contents_box(){
 					$('.move-wrap'+work_years).append('<div class="scrollall-con-box" id="scroll'+work_years+'-con-box'+item.years_num+'" aria-haspopup="true" role="button" tabindex="0"><div id="con-box'+work_years+'-imgborder'+item.years_num+'" class="con-box-imgborder">\
-					<img src="'+item.data_img+'" alt="'+item.data_alt+'"></div><div id="con-box'+work_years+'-caption'+item.years_num+'" class="con-box-caption"><span>'+item.data_title+'</span></div></div>');
+					<img src="'+portfolioindex_url+item.data_img+'" alt="'+item.data_alt+'"></div><div id="con-box'+work_years+'-caption'+item.years_num+'" class="con-box-caption"><span>'+item.data_title+'</span></div></div>');
 					
 					$('.move-wrap'+work_years).find('.box-all-empty').attr('data-empty','true').remove();
 				};
@@ -823,7 +829,7 @@ $(function(){
 				frame_year=item.data_years;
 				function contents_box(){
 					$('.move-wrap'+work_years).append('<div class="scrollall-con-box" id="scroll'+work_years+'-con-box'+item.years_num+'" aria-haspopup="true" role="button" tabindex="0"><div id="con-box'+work_years+'-imgborder'+item.years_num+'" class="con-box-imgborder">\
-					<img src="'+item.data_img+'" alt="'+item.data_alt+'"></div><div id="con-box'+work_years+'-caption'+item.years_num+'" class="con-box-caption"><span>'+item.data_title+'</span></div></div>');
+					<img src="'+portfolioindex_url+item.data_img+'" alt="'+item.data_alt+'"></div><div id="con-box'+work_years+'-caption'+item.years_num+'" class="con-box-caption"><span>'+item.data_title+'</span></div></div>');
 					$('.move-wrap'+work_years).find('.box-all-empty').attr('data-empty','true').remove();
 				};
 				// function empty_box(){
@@ -899,7 +905,7 @@ $(function(){
 				frame_year=item.data_years;
 				function contents_box(){
 					$('.move-wrap'+work_years).append('<div class="scrollall-con-box" id="scroll'+work_years+'-con-box'+item.years_num+'" aria-haspopup="true" role="button" tabindex="0"><div id="con-box'+work_years+'-imgborder'+item.years_num+'" class="con-box-imgborder">\
-					<img src="'+item.data_img+'" alt="'+item.data_alt+'"></div><div id="con-box'+work_years+'-caption'+item.years_num+'" class="con-box-caption"><span>'+item.data_title+'</span></div></div>');
+					<img src="'+portfolioindex_url+item.data_img+'" alt="'+item.data_alt+'"></div><div id="con-box'+work_years+'-caption'+item.years_num+'" class="con-box-caption"><span>'+item.data_title+'</span></div></div>');
 					
 					$('.move-wrap'+work_years).find('.box-all-empty').attr('data-empty','true').remove();
 				};
@@ -976,7 +982,7 @@ $(function(){
 				frame_year=item.data_years;
 				function contents_box(){
 					$('.move-wrap'+work_years).append('<div class="scrollall-con-box" id="scroll'+work_years+'-con-box'+item.years_num+'" aria-haspopup="true" role="button" tabindex="0"><div id="con-box'+work_years+'-imgborder'+item.years_num+'" class="con-box-imgborder">\
-					<img src="'+item.data_img+'" alt="'+item.data_alt+'"></div><div id="con-box'+work_years+'-caption'+item.years_num+'" class="con-box-caption"><span>'+item.data_title+'</span></div></div>');
+					<img src="'+portfolioindex_url+item.data_img+'" alt="'+item.data_alt+'"></div><div id="con-box'+work_years+'-caption'+item.years_num+'" class="con-box-caption"><span>'+item.data_title+'</span></div></div>');
 					
 					$('.move-wrap'+work_years).find('.box-all-empty').attr('data-empty','true').remove();
 				};
@@ -1053,7 +1059,7 @@ $(function(){
 				frame_year=item.data_years;
 				function contents_box(){
 					$('.move-wrap'+work_years).append('<div class="scrollall-con-box" id="scroll'+work_years+'-con-box'+item.years_num+'" aria-haspopup="true" role="button" tabindex="0"><div id="con-box'+work_years+'-imgborder'+item.years_num+'" class="con-box-imgborder">\
-					<img src="'+item.data_img+'" alt="'+item.data_alt+'"></div><div id="con-box'+work_years+'-caption'+item.years_num+'" class="con-box-caption"><span>'+item.data_title+'</span></div></div>');
+					<img src="'+portfolioindex_url+item.data_img+'" alt="'+item.data_alt+'"></div><div id="con-box'+work_years+'-caption'+item.years_num+'" class="con-box-caption"><span>'+item.data_title+'</span></div></div>');
 					
 					$('.move-wrap'+work_years).find('.box-all-empty').attr('data-empty','true').remove();
 				};
